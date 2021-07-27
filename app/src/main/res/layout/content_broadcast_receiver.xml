@@ -95,10 +95,6 @@
                 android:layout_height="2dp"
                 android:background="#000000">
             </View>
-            <WebView xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:id="@+id/webview_broadcast_receiver"
-                    android:layout_width="match_parent"
-                    android:layout_height="300sp" />
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"

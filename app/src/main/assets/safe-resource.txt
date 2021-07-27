@@ -1,0 +1,1 @@
+This local file is allowed to be retrieved via a WebView

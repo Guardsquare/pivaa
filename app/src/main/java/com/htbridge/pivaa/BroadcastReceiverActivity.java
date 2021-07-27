@@ -20,7 +20,6 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
 public class BroadcastReceiverActivity extends AppCompatActivity {
-    private WebView myWebView;
     private String location;
 
     @Override
@@ -43,17 +42,7 @@ public class BroadcastReceiverActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        myWebView = (WebView) findViewById(R.id.webview_broadcast_receiver);
-        WebSettings webSettings = myWebView.getSettings();
-        myWebView.setWebChromeClient(new WebChromeClient());
-
-        // setting up configuration for WebView
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setAllowFileAccess(true);
-        webSettings.setAllowUniversalAccessFromFileURLs(true);
-
         location = this.getExternalFilesDir(null) + "/broadcast.html";
-        myWebView.loadUrl("file://" + location);
 
         FileOutputStream fos = null;
         try {
@@ -84,14 +73,6 @@ public class BroadcastReceiverActivity extends AppCompatActivity {
                 intent.putExtra("location", location);
 
                 sendBroadcast(intent);
-
-                // refresh webview
-                try {
-                    Thread.sleep(300);
-                    myWebView.loadUrl(("file://" + location));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
 
         });

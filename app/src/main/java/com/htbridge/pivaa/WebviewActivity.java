@@ -1,18 +1,26 @@
 package com.htbridge.pivaa;
 
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.webkit.WebViewAssetLoader;
 
 import com.htbridge.pivaa.handlers.MenuHandler;
 
@@ -45,11 +53,24 @@ public class WebviewActivity extends AppCompatActivity {
         WebSettings webSettings = myWebView.getSettings();
         myWebView.setWebChromeClient(new WebChromeClient());
 
+        // Correctly set up file access
+        WebViewAssetLoader assetLoader = new WebViewAssetLoader.Builder()
+                .addPathHandler("/assets/", new WebViewAssetLoader.AssetsPathHandler(this))
+                .build();
+
+        myWebView.setWebViewClient(new WebViewClient() {
+            @Override
+            public WebResourceResponse shouldInterceptRequest(WebView view,
+                                                              WebResourceRequest request) {
+                return assetLoader.shouldInterceptRequest(request.getUrl());
+            }
+        });
+
         // setting up configuration for WebView
         webSettings.setJavaScriptEnabled(true);
-        webSettings.setAllowFileAccess(true);
+        webSettings.setAllowFileAccess(false);
         webSettings.setPluginState(WebSettings.PluginState.ON);
-        webSettings.setAllowUniversalAccessFromFileURLs(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(false);
 
 
         // loading configuration URL and showing on UI

@@ -8,7 +8,7 @@ public class Configuration {
 
     public String url_json = "https://www.htbridge.com/ssl/api/v1/load_all/1510314123771.html?_=1510314123152";
     public String url_webview = "https://www.htbridge.com/ssl/";
-    public String url_webview_link_1 = "file:///etc/hosts";
+    public String url_webview_link_1 = "https://appassets.androidplatform.net/assets/safe-resource.txt";
     public String url_webview_link_2 = "https://xss.rocks/scriptlet.html";
 
 
