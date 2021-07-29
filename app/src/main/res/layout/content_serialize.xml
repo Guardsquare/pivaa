@@ -9,6 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="60dp"
+    android:filterTouchesWhenObscured="true"
     tools:context="com.htbridge.pivaa.SerializeActivity"
     tools:showIn="@layout/activity_serialize">
 
