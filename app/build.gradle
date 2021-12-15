@@ -1,12 +1,8 @@
 plugins {
-  id "com.guardsquare.appsweep" version "0.1.2"
+  id "com.guardsquare.appsweep" version "0.1.6"
 }
 
 apply plugin: 'com.android.application'
-
-appsweep {
-    apiKey System.getenv("APPSWEEP_PIVAA_API_KEY")
-}
 
 android {
     compileSdkVersion 30
