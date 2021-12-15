@@ -3,7 +3,9 @@ package com.htbridge.pivaa;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.StrictMode;
 import androidx.annotation.NonNull;
@@ -132,8 +134,16 @@ public class MainActivity extends AppCompatActivity {
         DatabaseHelper db = new DatabaseHelper(this);
         db.initDatabaseOuter();
         db.addRecord(new DatabaseRecord(config.default_title_database_item, config.default_author_database_item));
+
+        insecureWrite();
     }
 
+    private void insecureWrite() {
+        ContextWrapper cw = new ContextWrapper(null);
+        SharedPreferences pref = cw.getSharedPreferences("text", MODE_WORLD_WRITEABLE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("key", "mysecret");
+    }
 
 
     /**
