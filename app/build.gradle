@@ -28,6 +28,7 @@ android {
     }
     productFlavors {
     }
+    namespace 'com.htbridge.pivaa'
 }
 
 dependencies {
